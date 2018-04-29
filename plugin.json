@@ -6,7 +6,6 @@
       "type":"template",
       "serviceProvider":"Bc\\Providers\\BcServiceProvider",
       "dependencies" : {
-            "guzzlehttp/guzzle": "6.2.*",
             "wish/php-sdk": "*"
       }
 }
