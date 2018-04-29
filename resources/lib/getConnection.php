@@ -1,16 +1,15 @@
 <?php
 
-$client = new \GuzzleHttp\Client();
-$res = $client->request(
-    'GET',
-    'https://packagist.org/search.json',
-    [
-        'query' => ['q' => SdkRestApi::getParam('packagist_query')]
-    ]
-);
- 
-/** @return array */
-return json_decode($res->getBody(), true);
+use Wish\WishClient;
+use Wish\Model\WishTracker;
+use Wish\Exception\OrderAlreadyFulfilledException;
+use Wish\Model\WishReason;
+
+$token = 'b7a3bc5b0a0148208f2e80387f292366';
+$client = new WishClient($token,'sandbox');
+
+$changed_orders = $client->getAllChangedOrdersSince();
+return $changed_orders;
 
 //$paymentResult = [];
 
