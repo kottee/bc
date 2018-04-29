@@ -6,6 +6,6 @@
       "type":"template",
       "serviceProvider":"Bc\\Providers\\BcServiceProvider",
       "dependencies" : {
-            "wish/php-sdk": "*"
+            "wish/php-sdk": "dev-master"
       }
 }
