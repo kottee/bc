@@ -1,0 +1,34 @@
+{
+    "formatVersion": 1,
+    "menu": {
+        "Config.BcAppSettingsTab": {
+            "label": "Config.BcAppSettingsTab",
+            "formFields": {
+                "client_id": {
+                    "type": "inputText",
+                    "required": false,
+                    "label": "Config.clientIdLabel",
+                    "options": {
+                        "defaultValue": ""
+                    }
+                },
+                "client_secret": {
+                    "type": "inputText",
+                    "required": false,
+                    "label": "Config.clientSecretLabel",
+                    "options": {
+                        "defaultValue": ""
+                    }
+                },
+                "redirect_uri": {
+                    "type": "inputText",
+                    "required": false,
+                    "label": "Config.redirectUriLabel",
+                    "options": {
+                        "defaultValue": ""
+                    }
+                }
+            }
+        }
+    }
+}

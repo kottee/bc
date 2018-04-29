@@ -1,0 +1,12 @@
+{
+      "name":"Bc",
+      "description":"My first plugin",
+      "namespace":"Bc",
+      "author":"BC",
+      "type":"template",
+      "serviceProvider":"Bc\\Providers\\BcServiceProvider",
+      "dependencies" : {
+            "guzzlehttp/guzzle": "6.2.*",
+            "wish/php-sdk": "*"
+      }
+}
