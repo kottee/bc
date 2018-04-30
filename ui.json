@@ -1,0 +1,36 @@
+{
+  "defaultEntryPoint": "index.html",
+  "namespace": "Bc",
+  "menuEntries": [
+    {
+      "label": "menu.authentication",
+      "menu": "settings/markets/bc",
+      "urlKey": "bc-authentication",
+      "entryPoint": "index.html?action=auth"
+    },
+    {
+      "label": "menu.settings",
+      "menu": "settings/markets/bc",
+      "urlKey": "bc-settings",
+      "entryPoint": "index.html?action=settings"
+    },
+    {
+      "label": "menu.shippingProfiles",
+      "menu": "settings/markets/bc",
+      "urlKey": "bc-shipping-profiles",
+      "entryPoint": "index.html?action=shippingProfiles"
+    },
+    {
+      "label": "menu.categories",
+      "menu": "settings/markets/bc",
+      "urlKey": "bc-categories",
+      "entryPoint": "index.html?action=taxonomies"
+    },
+    {
+      "label": "menu.properties",
+      "menu": "settings/markets/bc",
+      "urlKey": "bc-properties",
+      "entryPoint": "index.html?action=properties"
+    }
+  ]
+}
