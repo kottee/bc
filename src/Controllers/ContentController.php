@@ -86,7 +86,7 @@ class ContentController extends Controller
 				'mandatoryAllMarketplace' => [
 					10
 				]
-			]
+			];
 
 		//$itemFilter = [
 		//    'itemBase.isStoreSpecial' => [
