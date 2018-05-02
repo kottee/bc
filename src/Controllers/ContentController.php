@@ -129,14 +129,14 @@ class ContentController extends Controller
 			//}
 		    $items[] = $item;
 			$product[] = array(
-			  'name'=>$tiem->itemDescription->name1,
+			  'name'=>$item->itemDescription->name1,
 			  'main_image'=>'https://www.google.com/images/srpr/logo11w.png',
 			  'sku'=>'prod 7',
 			  'parent_sku'=>'prod 7',
 			  'shipping'=>'10',
 			  'tags'=>'red,shoe,cool',
-			  'description'=>$tiem->itemDescription->shortDescription,
-			  'price'=>$tiem->variationRetailPrice->price,
+			  'description'=>$item->itemDescription->shortDescription,
+			  'price'=>$item->variationRetailPrice->price,
 			  'inventory'=>'10',
 			  'randomfield'=>'12321'
   			);
@@ -146,6 +146,7 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
+		$this->getLogger(__METHOD__)->error('Bc::proDD', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTT', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
