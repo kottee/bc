@@ -6,7 +6,7 @@ use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 
-use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract
+use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
 
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
 
