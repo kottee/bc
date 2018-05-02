@@ -81,6 +81,12 @@ class ContentController extends Controller
 				'timestampFrom' => strtotime("-1 days"),
 				'timestampTo'   => time(),
 			];
+		
+		$itemFilter['variationVisibility.isVisibleForMarketplace'] = [
+				'mandatoryAllMarketplace' => [
+					10
+				]
+			]
 
 		//$itemFilter = [
 		//    'itemBase.isStoreSpecial' => [
