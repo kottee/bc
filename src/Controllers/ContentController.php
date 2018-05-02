@@ -78,6 +78,11 @@ class ContentController extends Controller
 				'position',
 				'attributeValueId',
 				'cleanImageName'
+			],
+			'VariationMarketStatus' => [
+				'sku',
+				'initialSku',
+				'parentSku'
 			]
 		];
 		
