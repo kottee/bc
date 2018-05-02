@@ -39,6 +39,8 @@ class ContentController extends Controller
 		$itemColumns = [
 			'itemDescription' => [				
 				'name1',
+				'name2',
+				'name3',
 				'description',
 				'shortDescription',
 				'technicalData',
@@ -61,6 +63,8 @@ class ContentController extends Controller
 				'widthMm',
 				'heightMm',
 				'attributeValueSetId',
+				'availability',
+				'availableUntil',
 			],
 			'variationRetailPrice' => [
 				'price',
@@ -108,12 +112,36 @@ class ContentController extends Controller
 
 		$resultItems = $itemRepository
 		    ->search($itemColumns, $itemFilter, $itemParams);
+		
+		//$totalitemsin_marketplace=$this->libCall->call('Bc::getAllProduct', ['packagist_query' => 'plentymarkets']);
 
 		$items = array();
+		$items_update = array();
+		$items_create = array();
+		$product = array();
+		
 		foreach ($resultItems as $item)
 		{
+			//if(in_array($item['id'],$totalitemsin_marketplace)){
+			//	$items_update[] = $item;
+			//} else {
+			//	$items_create[] = $item;
+			//}
 		    $items[] = $item;
+			$product[] = array(
+			  'name'=>$tiem->itemDescription->name1,
+			  'main_image'=>'https://www.google.com/images/srpr/logo11w.png',
+			  'sku'=>'prod 7',
+			  'parent_sku'=>'prod 7',
+			  'shipping'=>'10',
+			  'tags'=>'red,shoe,cool',
+			  'description'=>$tiem->itemDescription->shortDescription,
+			  'price'=>$tiem->variationRetailPrice->price,
+			  'inventory'=>'10',
+			  'randomfield'=>'12321'
+  			);
 		}
+		
 		$templateData = array(
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
