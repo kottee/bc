@@ -77,16 +77,24 @@ class ContentController extends Controller
 			]
 		];
 		
-		$itemFilter['itemBase.wasUpdatedBetween'] = [
-				'timestampFrom' => strtotime("-1 days"),
-				'timestampTo'   => time(),
+		//$itemFilter['itemBase.wasUpdatedBetween'] = [
+		//		'timestampFrom' => strtotime("-1 days"),
+		//		'timestampTo'   => time(),
+		//	];
+		$itemFilter = [
+				'itemBase.wasUpdatedBetween' => [
+					'timestampFrom' => strtotime("-1 days"),
+					'timestampTo'   => time(),
+				],
+				'variationBase.isActive?' => [],
+				'variationVisibility.isVisibleForMarketplace' => [
+					'mandatoryOneMarketplace' => [],
+					'mandatoryAllMarketplace' => [
+						10
+					]
+				],
 			];
-		
-		$itemFilter['variationVisibility.isVisibleForMarketplace'] = [
-				'mandatoryAllMarketplace' => [
-					10
-				]
-			];
+			
 
 		//$itemFilter = [
 		//    'itemBase.isStoreSpecial' => [
