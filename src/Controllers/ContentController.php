@@ -35,7 +35,7 @@ class ContentController extends Controller
     	{
 		$sofortRequestParams['id'] = '123';
 		$paymentResult = $this->libCall->call('Bc::getConnection', ['packagist_query' => 'plentymarkets']);
-		$this->getLogger(__METHOD__)->error('Bc::LIBCALLLLLLKKK', $paymentResult);
+		$this->getLogger(__METHOD__)->error('Bc::LIBCALLLLLLKKKNN', $paymentResult);
 		$itemColumns = [
 			'itemDescription' => [				
 				'name1',
@@ -116,7 +116,7 @@ class ContentController extends Controller
 		];
 
 		$resultItems = $itemRepository
-		    ->search($itemColumns, $itemFilter, $itemParams);
+		    ->search([], $itemFilter, $itemParams);
 		
 		//$totalitemsin_marketplace=$this->libCall->call('Bc::getAllProduct', ['packagist_query' => 'plentymarkets']);
 
@@ -151,8 +151,8 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
-		$this->getLogger(__METHOD__)->error('Bc::proDD', $product);
-		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTT', $resultItems);
+		$this->getLogger(__METHOD__)->error('Bc::proDDNN', $product);
+		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNN', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
 }
