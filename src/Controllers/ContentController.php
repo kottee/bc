@@ -116,7 +116,7 @@ class ContentController extends Controller
 		];
 
 		$resultItems = $itemRepository
-		    ->search([], $itemFilter, $itemParams);
+		    ->search($itemColumns, $itemFilter, $itemParams);
 		
 		//$totalitemsin_marketplace=$this->libCall->call('Bc::getAllProduct', ['packagist_query' => 'plentymarkets']);
 
