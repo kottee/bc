@@ -150,8 +150,8 @@ class ContentController extends Controller
 			$product[] = array(
 			  'name'=>$item->itemDescription->name1,
 			  'main_image'=>'https://www.google.com/images/srpr/logo11w.png',
-			  'sku'=>'prod 7',
-			  'parent_sku'=>'prod 7',
+			  'sku'=>$item->variationBase->id,
+			  'parent_sku'=>$item->variationBase->id,
 			  'shipping'=>'10',
 			  'tags'=>'red,shoe,cool',
 			  'description'=>$item->itemDescription->shortDescription,
