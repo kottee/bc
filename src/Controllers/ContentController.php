@@ -84,6 +84,8 @@ class ContentController extends Controller
 			'variationMarketStatus' => [
 				'id',
 				'sku',
+				'initialSku',
+				'parentSku',
 				'marketStatus',
 				'additionalInformation'
 			],
