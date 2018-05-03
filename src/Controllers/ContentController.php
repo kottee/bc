@@ -104,18 +104,6 @@ class ContentController extends Controller
 				'name',
 				'backendName',
 				'tags'
-			],
-			'record' => [
-				'itemBase',
-				'itemPropertyList',
-				'itemDescription',
-				'variationBarcode',
-				'variationMarketStatus',
-				'variationRecommendedRetailPrice',
-				'variationStandardCategory',
-				'variationStockBuffer',
-				'variationWarehouse',
-				'variationSpecialOfferRetailPrice'
 			]
 		];
 		
