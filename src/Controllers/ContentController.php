@@ -47,7 +47,7 @@ class ContentController extends Controller
 				'shortDescription',
 				'technicalData',
 				'keywords',
-				'lang',			
+				'lang'		
 			],
 			'itemBase' => [				
 				'id',
@@ -69,7 +69,7 @@ class ContentController extends Controller
 				'heightMm',
 				'attributeValueSetId',
 				'availability',
-				'availableUntil',
+				'availableUntil'
 			],
 			'variationRetailPrice' => [
 				'price',
@@ -99,11 +99,6 @@ class ContentController extends Controller
 				'fields' => [
 					'stockNet'
 				]
-			],
-			'itemShippingProfiles' => [
-				'name',
-				'backendName',
-				'tags'
 			]
 		];
 		
