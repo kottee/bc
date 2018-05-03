@@ -47,7 +47,7 @@ class ContentController extends Controller
 				'shortDescription',
 				'technicalData',
 				'keywords',
-				'lang'				
+				'lang',			
 			],
 			'itemBase' => [				
 				'id',
@@ -55,7 +55,10 @@ class ContentController extends Controller
 				'lastUpdateTimestamp',
 				'type',
 				'variationCount',
-				'producerId'				
+				'producerId',
+				'defaultShippingCost',
+				'createDate',
+				'variationCount'
 			],
 			'variationBase' => [
 				'id',
@@ -96,6 +99,23 @@ class ContentController extends Controller
 				'fields' => [
 					'stockNet'
 				]
+			],
+			'itemShippingProfiles' => [
+				'name',
+				'backendName',
+				'tags'
+			],
+			'record' => [
+				'itemBase',
+				'itemPropertyList',
+				'itemDescription',
+				'variationBarcode',
+				'variationMarketStatus',
+				'variationRecommendedRetailPrice',
+				'variationStandardCategory',
+				'variationStockBuffer',
+				'variationWarehouse',
+				'variationSpecialOfferRetailPrice'
 			]
 		];
 		
@@ -166,7 +186,7 @@ class ContentController extends Controller
 		    'currentItems' => $items
 		);
 		$this->getLogger(__METHOD__)->error('Bc::proDDNNDD', $product);
-		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNN', $resultItems);
+		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDD', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
 }
