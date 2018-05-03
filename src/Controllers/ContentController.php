@@ -6,7 +6,7 @@ use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 
-use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
+//use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
 
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
 
@@ -33,7 +33,7 @@ class ContentController extends Controller
 		return $twig->render('Bc::content.hello');
 	}
 	
-	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, VariationSearchRepositoryContract $vv):string
+	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository):string
     	{
 		$sofortRequestParams['id'] = '123';
 		$paymentResult = $this->libCall->call('Bc::getConnection', ['packagist_query' => 'plentymarkets']);
@@ -117,9 +117,9 @@ class ContentController extends Controller
 		    'language' => 'en'
 		];
 
-		//$resultItems = $itemRepository
-		  //  ->search($itemColumns, $itemFilter, $itemParams);
-		$resultItems = $vv->search($itemColumns, $itemFilter, $itemParams);
+		$resultItems = $itemRepository
+		    ->search($itemColumns, $itemFilter, $itemParams);
+		//$resultItems = $vv->search($itemColumns, $itemFilter, $itemParams);
 		
 		//$totalitemsin_marketplace=$this->libCall->call('Bc::getAllProduct', ['packagist_query' => 'plentymarkets']);
 
