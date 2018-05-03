@@ -82,9 +82,15 @@ class ContentController extends Controller
 				'cleanImageName'
 			],
 			'variationMarketStatus' => [
-				'sku',
-				'initialSku',
-				'parentSku'
+				'params' => [
+					'marketId' => 10
+				],
+				'fields' => [
+					'id',
+					'sku',
+					'marketStatus',
+					'additionalInformation',
+				]
 			]
 		];
 		
