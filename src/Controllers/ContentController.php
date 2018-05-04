@@ -25,6 +25,7 @@ class ContentController extends Controller
 	use Loggable;
 	
 	public $libCall;
+	public $itemDataLayerRepository;
 	
 	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository){
 		$this->libCall = $libCall;
