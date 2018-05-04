@@ -178,7 +178,7 @@ class ContentController extends Controller
     	{
 		$sofortRequestParams['id'] = '123';
 		$paymentResult = $this->libCall->call('Bc::getConnection', ['packagist_query' => 'plentymarkets']);
-		$this->getLogger(__METHOD__)->error('Bc::LIBCALLLLLLKKKNN', $paymentResult);
+		$this->getLogger(__METHOD__)->error('Bc::LIBCALLLLLLKKKNNKKKKK', $paymentResult);
 		$itemColumns = [
 			'itemDescription' => [				
 				'name1',
@@ -210,20 +210,22 @@ class ContentController extends Controller
 				'heightMm',
 				'attributeValueSetId',
 				'availability',
-				'availableUntil'
+				'availableUntil',
+				'availability',
+				'content',
+				'operatingCostsPercent',
+				'purchasePrice'
 			],
 			'variationRetailPrice' => [
 				'price',
-				'currency'
-			],
-			'variationImageList' => [
-				'imageId',
-				'type',
-				'fileType',
-				'path',
-				'position',
-				'attributeValueId',
-				'cleanImageName'
+				'currency',
+				'retailPriceNet',
+				'basePrice',
+				'basePriceNet',
+				'unitPrice',
+				'unitPriceNet',
+				'orderParamsMarkup',
+				'orderParamsMarkupNet'
 			],
 			'variationMarketStatus' => [
 				'id',
@@ -340,8 +342,8 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
-		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDDDDDDDD', $product);
-		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDDDDDDDDDD', $resultItems);
+		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDDDDDDDDKKKKK', $product);
+		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDDDDDDDDDDKKKK', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
 }
