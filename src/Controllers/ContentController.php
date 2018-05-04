@@ -94,12 +94,7 @@ class ContentController extends Controller
 				'additionalInformation'
 			],
 			'variationStock' => [
-				'params' => [
-					'type' => 'virtual'
-				],
-				'fields' => [
-					'stockNet'
-				]
+				'stockNet'
 			]
 		];
 		
@@ -161,7 +156,7 @@ class ContentController extends Controller
 			  'tags'=>'red,shoe,cool',
 			  'description'=>$item->itemDescription->shortDescription,
 			  'price'=>$item->variationRetailPrice->price,
-			  'inventory'=>'10',
+			  'inventory'=>$item->variationStock,
 			  'randomfield'=>'12321',
 			  'tt' => $tt
   			);
