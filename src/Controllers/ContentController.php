@@ -92,14 +92,6 @@ class ContentController extends Controller
 				'parentSku',
 				'marketStatus',
 				'additionalInformation'
-			],
-			'variationStock' => [
-				'params' => [
--					'type' => '*'
--				],
--				'fields' => [
--					'stockNet'
--				]
 			]
 		];
 		
@@ -161,7 +153,7 @@ class ContentController extends Controller
 			  'tags'=>'red,shoe,cool',
 			  'description'=>$item->itemDescription->shortDescription,
 			  'price'=>$item->variationRetailPrice->price,
-			  'inventory'=>$item->variationStock,
+			  'inventory'=>$item,
 			  'randomfield'=>'12321',
 			  'tt' => $tt
   			);
