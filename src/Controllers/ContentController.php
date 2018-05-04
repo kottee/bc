@@ -89,9 +89,6 @@ class ContentController extends Controller
 				'price',
 				'currency',
 			],
-			'variationStock' => [
-				'netStock'
-			],
 			'variationStandardCategory' => [
 				'params' => [
 					'plentyId' => pluginApp(Application::class)->getPlentyId(),
