@@ -236,6 +236,9 @@ class ContentController extends Controller
 				'marketStatus',
 				'additionalInformation'
 			],
+			'variationStock' => [
+				'netStock'
+			],
 			'variationImageList' => [
 				'params' => [
 					'all_images'                                       => [
@@ -343,8 +346,8 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
-		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDD', $product);
-		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDD', $resultItems);
+		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDDDDDDDD', $product);
+		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDDDDDDDDDD', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
 }
