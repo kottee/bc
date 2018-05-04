@@ -15,8 +15,8 @@ class BcRouteServiceProvider extends RouteServiceProvider
 	 */
 	public function map(Router $router)
 	{
-		$router->get('wishhello', 'Bc\Controllers\ContentController@sayHello');
-		$router->get('hellotest', 'Bc\Controllers\ContentController@sayHello');
+		$router->get('wishhello', 'Bc\Controllers\ContentController@sayHelloUpdateItems');
+		$router->get('hellotest', 'Bc\Controllers\ContentController@sayHelloGetOrders');
 		$router->get('hello', 'Bc\Controllers\ContentController@sayHello');
 	}
 
