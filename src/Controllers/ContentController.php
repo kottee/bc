@@ -89,16 +89,9 @@ class ContentController extends Controller
 				'price',
 				'currency',
 			],
-
 			'variationStock' => [
-				'params' => [
-					'type' => 'virtual'
-				],
-				'fields' => [
-					'stockNet'
-				]
+				'netStock'
 			],
-
 			'variationStandardCategory' => [
 				'params' => [
 					'plentyId' => pluginApp(Application::class)->getPlentyId(),
@@ -180,8 +173,8 @@ class ContentController extends Controller
 		];
 		
 		$check = $this->itemDataLayerRepository->search($resultFields, $itemFilter, $itemParams);
-		$this->getLogger(__METHOD__)->error('Bc::CHECK1', $check);
-		$this->getLogger(__METHOD__)->error('Bc::TEST2', 'TEST');
+		$this->getLogger(__METHOD__)->error('Bc::CHECK11', $check);
+		$this->getLogger(__METHOD__)->error('Bc::TEST21', 'TEST');
 	}
 	
 	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, ItemRepositoryContract $it, VariationStockRepositoryContract $itemstock):string
