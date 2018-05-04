@@ -6,6 +6,7 @@ use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
+use Plenty\Modules\Item\VariationStock\Contracts\VariationStockRepositoryContract;
 
 //use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
 
@@ -34,7 +35,7 @@ class ContentController extends Controller
 		return $twig->render('Bc::content.hello');
 	}
 	
-	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, ItemRepositoryContract $it):string
+	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, ItemRepositoryContract $it, VariationStockRepositoryContract $itemstock):string
     	{
 		$sofortRequestParams['id'] = '123';
 		$paymentResult = $this->libCall->call('Bc::getConnection', ['packagist_query' => 'plentymarkets']);
@@ -143,6 +144,7 @@ class ContentController extends Controller
 			//	$items_create[] = $item;
 			//}
 			$tt = $it->show($item->itemBase->id);
+			$itemstockData = $itemstock->listStockByWarehouse($item->variationBase->id);
 		    $items[] = $item;
 			$product[] = array(
 			  'name'=>$item->itemDescription->name1,
@@ -155,7 +157,8 @@ class ContentController extends Controller
 			  'price'=>$item->variationRetailPrice->price,
 			  'inventory'=>$item,
 			  'randomfield'=>'12321',
-			  'tt' => $tt
+			  'tt' => $tt,
+			  'stock' => $itemstockData
   			);
 		}
 		
