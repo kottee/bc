@@ -233,9 +233,6 @@ class ContentController extends Controller
 				'marketStatus',
 				'additionalInformation'
 			],
-			'variationStock' => [
-				'netStock'
-			],
 			'variationImageList' => [
 				'params' => [
 					'all_images'                                       => [
