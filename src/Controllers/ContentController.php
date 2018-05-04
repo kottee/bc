@@ -8,6 +8,10 @@ use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\VariationStock\Contracts\VariationStockRepositoryContract;
 
+use Plenty\Plugin\Application;
+use Plenty\Plugin\ConfigRepository;
+use Plenty\Modules\Item\DataLayer\Models\RecordList;
+
 //use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
 
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
@@ -22,17 +26,157 @@ class ContentController extends Controller
 	
 	public $libCall;
 	
-	public function __construct(LibraryCallContract $libCall){
+	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository){
 		$this->libCall = $libCall;
+		$this->itemDataLayerRepository = $itemDataLayerRepository;
 	}
 	
 	/**
 	 * @param Twig $twig
 	 * @return string
 	 */
-	public function sayHelloT(Twig $twig):string
+	public function sayHelloGetOrders(Twig $twig)
 	{
-		return $twig->render('Bc::content.hello');
+		
+		$this->getLogger(__METHOD__)->error('Bc::TEST', 'TEST');
+		$resultFields = [
+			'itemBase' => [
+				'id',
+				'producer',
+			],
+
+			'itemShippingProfilesList' => [
+				'id',
+				'name',
+			],
+
+			'itemDescription' => [
+				'params' => 10,
+				'fields' => [
+					'name1',
+					'description',
+					'shortDescription',
+					'technicalData',
+					'keywords',
+					'lang',
+				],
+			],
+
+			'variationMarketStatus' => [
+				'params' => [
+					'marketId' => 10
+				],
+				'fields' => [
+					'id',
+					'sku',
+					'marketStatus',
+					'additionalInformation',
+				]
+			],
+
+			'variationBase' => [
+				'id',
+				'limitOrderByStockSelect',
+				'weightG',
+				'lengthMm',
+				'widthMm',
+				'heightMm',
+				'attributeValueSetId',
+			],
+
+			'variationRetailPrice' => [
+				'price',
+				'currency',
+			],
+
+			'variationStock' => [
+				'params' => [
+					'type' => 'virtual'
+				],
+				'fields' => [
+					'stockNet'
+				]
+			],
+
+			'variationStandardCategory' => [
+				'params' => [
+					'plentyId' => pluginApp(Application::class)->getPlentyId(),
+				],
+				'fields' => [
+					'categoryId'
+				],
+			],
+
+			'itemCharacterList' => [
+				'itemCharacterId',
+				'characterId',
+				'characterValue',
+				'characterValueType',
+				'isOrderCharacter',
+				'characterOrderMarkup'
+			],
+
+			'variationAttributeValueList' => [
+				'attributeId',
+				'attributeValueId'
+			],
+
+			'variationImageList' => [
+				'params' => [
+					'all_images'                                       => [
+						'type'                 => 'all', // all images
+						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
+						'imageType'            => ['internal'],
+						'referenceMarketplace' => 10,
+					],
+					'only_current_variation_images_and_generic_images' => [
+						'type'                 => 'item_variation', // current variation + item images
+						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
+						'imageType'            => ['internal'],
+						'referenceMarketplace' => 10,
+					],
+					'only_current_variation_images'                    => [
+						'type'                 => 'variation', // current variation images
+						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
+						'imageType'            => ['internal'],
+						'referenceMarketplace' => 10,
+					],
+					'only_generic_images'                              => [
+						'type'                 => 'item', // only item images
+						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
+						'imageType'            => ['internal'],
+						'referenceMarketplace' => 10,
+					],
+				],
+				'fields' => [
+					'imageId',
+					'type',
+					'fileType',
+					'path',
+					'position',
+					'attributeValueId',
+				],
+			],
+		];
+		
+		
+		$itemFilter = [
+				'itemBase.wasUpdatedBetween' => [
+					'timestampFrom' => strtotime("-1 days"),
+					'timestampTo'   => time(),
+				],
+				'variationBase.isActive?' => [],
+				'variationVisibility.isVisibleForMarketplace' => [
+					'mandatoryOneMarketplace' => [],
+					'mandatoryAllMarketplace' => [
+						10
+					]
+				],
+			];
+		
+		$check = $this->itemDataLayerRepository->search($resultFields, $itemFilter, ['referrerId' => 10]);
+		$this->getLogger(__METHOD__)->error('Bc::CHECK', $check);
+		$this->getLogger(__METHOD__)->error('Bc::TEST2', 'TEST');
 	}
 	
 	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, ItemRepositoryContract $it, VariationStockRepositoryContract $itemstock):string
