@@ -5,6 +5,7 @@ use Plenty\Plugin\Controller;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
+use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 
 //use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
 
@@ -33,7 +34,7 @@ class ContentController extends Controller
 		return $twig->render('Bc::content.hello');
 	}
 	
-	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository):string
+	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, ItemRepositoryContract $it):string
     	{
 		$sofortRequestParams['id'] = '123';
 		$paymentResult = $this->libCall->call('Bc::getConnection', ['packagist_query' => 'plentymarkets']);
@@ -149,6 +150,7 @@ class ContentController extends Controller
 			//} else {
 			//	$items_create[] = $item;
 			//}
+			$tt = $it->show($item->itemBase->id);
 		    $items[] = $item;
 			$product[] = array(
 			  'name'=>$item->itemDescription->name1,
@@ -160,7 +162,8 @@ class ContentController extends Controller
 			  'description'=>$item->itemDescription->shortDescription,
 			  'price'=>$item->variationRetailPrice->price,
 			  'inventory'=>'10',
-			  'randomfield'=>'12321'
+			  'randomfield'=>'12321',
+			  'tt' => $tt
   			);
 		}
 		
@@ -168,7 +171,7 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
-		$this->getLogger(__METHOD__)->error('Bc::proDDNNDD', $product);
+		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDD', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDD', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
