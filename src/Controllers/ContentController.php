@@ -39,7 +39,7 @@ class ContentController extends Controller
 	public function sayHelloGetOrders(Twig $twig)
 	{
 		
-		$this->getLogger(__METHOD__)->error('Bc::TEST', 'TEST');
+		$this->getLogger(__METHOD__)->error('Bc::TEST1', 'TEST');
 		$resultFields = [
 			'itemBase' => [
 				'id',
@@ -175,8 +175,12 @@ class ContentController extends Controller
 				],
 			];
 		
-		$check = $this->itemDataLayerRepository->search($resultFields, $itemFilter, ['referrerId' => 10]);
-		$this->getLogger(__METHOD__)->error('Bc::CHECK', $check);
+		$itemParams = [
+		    'language' => 'en'
+		];
+		
+		$check = $this->itemDataLayerRepository->search($resultFields, $itemFilter, $itemParams);
+		$this->getLogger(__METHOD__)->error('Bc::CHECK1', $check);
 		$this->getLogger(__METHOD__)->error('Bc::TEST2', 'TEST');
 	}
 	
