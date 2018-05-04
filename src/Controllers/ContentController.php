@@ -94,7 +94,12 @@ class ContentController extends Controller
 				'additionalInformation'
 			],
 			'variationStock' => [
-				'stockNet'
+				'params' => [
+-					'type' => '*'
+-				],
+-				'fields' => [
+-					'stockNet'
+-				]
 			]
 		];
 		
