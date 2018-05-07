@@ -227,15 +227,6 @@ class ContentController extends Controller
 				'orderParamsMarkup',
 				'orderParamsMarkupNet'
 			],
-			'variationStock' => [
-				'warehouseId',
-				'stockPhysical',
-				'reservedStock',
-				'stockNet',
-				'lastUpdateTimestamp',
-				'reservedOutOfStock',
-				'reservedBasket'
-			],
 			'variationMarketStatus' => [
 				'id',
 				'sku',
