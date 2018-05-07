@@ -96,7 +96,7 @@ class ContentController extends Controller
 				'fields' => [
 					'categoryId'
 				],
-			],
+			],			
 
 			'itemCharacterList' => [
 				'itemCharacterId',
@@ -227,6 +227,15 @@ class ContentController extends Controller
 				'orderParamsMarkup',
 				'orderParamsMarkupNet'
 			],
+			'variationStock' => [
+				'warehouseId',
+				'stockPhysical',
+				'reservedStock',
+				'stockNet',
+				'lastUpdateTimestamp',
+				'reservedOutOfStock',
+				'reservedBasket'
+			],
 			'variationMarketStatus' => [
 				'id',
 				'sku',
@@ -342,8 +351,8 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
-		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDDDDDDDDKKKKK', $product);
-		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDDDDDDDDDDKKKK', $resultItems);
+		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDDDDDDDDKKKKKLL', $product);
+		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDDDDDDDDDDKKKKLL', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
 }
