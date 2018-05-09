@@ -174,7 +174,7 @@ class ContentController extends Controller
 		$this->getLogger(__METHOD__)->error('Bc::TEST21', 'TEST');
 	}
 	
-	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, ItemRepositoryContract $it, VariationStockRepositoryContract $itemstock):string
+	public function sayHello(Twig $twig, ItemDataLayerRepositoryContract $itemRepository):string
     	{
 		$sofortRequestParams['id'] = '123';
 		$paymentResult = $this->libCall->call('Bc::getConnection', ['packagist_query' => 'plentymarkets']);
