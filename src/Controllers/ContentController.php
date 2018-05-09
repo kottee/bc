@@ -320,7 +320,7 @@ class ContentController extends Controller
 			//} else {
 			//	$items_create[] = $item;
 			//}
-			$tt = $it->show($item->itemBase->id);
+			
 			//$itemstockData = $itemstock->listStockByWarehouse($item->variationBase->id, ['variationId','warehouseId','valueOfGoods','purchasePrice','physicalStock','reservedStock','netStock']);
 		    $items[] = $item;
 			$product[] = array(
@@ -333,8 +333,7 @@ class ContentController extends Controller
 			  'description'=>$item->itemDescription->shortDescription,
 			  'price'=>$item->variationRetailPrice->price,
 			  'inventory'=>$item,
-			  'randomfield'=>'12321',
-			  'tt' => $tt
+			  'randomfield'=>'12321'
   			);
 		}
 		
