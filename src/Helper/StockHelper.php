@@ -162,15 +162,15 @@ class StockHelper
      * @param  array $variation
      * @return bool
      */
-    public function isValid($variation):bool
+    public function isValid($variation)
     {
-        $stock = $this->getStock($variation);
+       // $stock = $this->getStock($variation);
 
         // if stock is limited by kauflux config condition and stock is negative
-        if($this->marketHelper->getConfigValue('stockCondition') != 'N' && $stock <= 0)
-        {
-            return false;
-        }
+      //  if($this->marketHelper->getConfigValue('stockCondition') != 'N' && $stock <= 0)
+     //   {
+     //       return false;
+     //   }
 
         // else if stock is unlimited by kauflux config condition or stock is positive
         return true;
