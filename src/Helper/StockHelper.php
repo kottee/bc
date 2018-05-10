@@ -16,7 +16,8 @@ use Plenty\Modules\Helper\Models\KeyValue;
 class StockHelper
 {
     use Loggable;
-
+	
+	
     const STOCK_WAREHOUSE_TYPE = 'sales';
 
     const STOCK_AVAILABLE_LIMITED = 0;
@@ -55,6 +56,30 @@ class StockHelper
         $this->stockRepository = $stockRepositoryContract;
         $this->marketHelper = $marketHelper;
     }
+	
+	
+	
+    public function getStock($variationid)
+    {
+		$this->stockRepository->setFilters(['variationId' => $variationid]);
+		$stockNet = 0;
+		$stockResult = $this->stockRepository->listStock(['*']);
+		if($stockResult instanceof PaginatedResult)
+		{
+			$result = $stockResult->getResult();
+			if($result instanceof Collection)
+			{
+				foreach($result as $model)
+				{
+					if($model instanceof Stock)
+					{
+						$stockNet += (int)$model->stockNet;
+					}
+				}
+			}
+		}
+		return $stockNet;
+    }
 
     /**
      * Calculates the stock based depending on different limits.
@@ -62,7 +87,7 @@ class StockHelper
      * @param  array $variation
      * @return int
      */
-    public function getStock($variation)
+    public function getStockOld($variation)
     {
         $stockNet = 0;
 
