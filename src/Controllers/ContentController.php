@@ -8,6 +8,9 @@ use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\VariationStock\Contracts\VariationStockRepositoryContract;
 
+use Plenty\Modules\StockManagement\Stock\Contracts\StockRepositoryContract;
+use Plenty\Modules\StockManagement\Stock\Models\Stock;
+
 use Plenty\Plugin\Application;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Modules\Item\DataLayer\Models\RecordList;
@@ -29,11 +32,13 @@ class ContentController extends Controller
 	public $libCall;
 	public $itemDataLayerRepository;
 	public $stockHelper;
+	public $stockRepository;
 	
-	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository, StockHelper $stockHelper){
+	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository, StockHelper $stockHelper, StockRepositoryContract $stockRepositoryContract){
 		$this->libCall = $libCall;
 		$this->itemDataLayerRepository = $itemDataLayerRepository;
 		$this->stockHelper = $stockHelper;
+		$this->stockRepository = $stockRepositoryContract;
 	}
 	
 	/**
@@ -345,9 +350,13 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
-		$this->getLogger(__METHOD__)->error('Bc::CHECHHELPER', $this->stockHelper->getStock($item->variationBase->id));
-		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDDDDDDDDKKKKKLL', $product);
-		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDDDDDDDDDDKKKKLL', $resultItems);
+		
+		$this->stockRepository->setFilters(['variationId' => $item->variationBase->id]);
+		$stockResult = $this->stockRepository->listStockByWarehouseType(['itemId','variationId','warehouseId','stockPhysical','reservedStock','stockNet','averagePurchasePrice','updatedAt'], 1, 1);
+		
+		$this->getLogger(__METHOD__)->error('Bc::stockResult', $stockResult);
+		$this->getLogger(__METHOD__)->error('Bc::proDD', $product);
+		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryL', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
 }
