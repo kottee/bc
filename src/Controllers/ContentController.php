@@ -355,7 +355,7 @@ class ContentController extends Controller
 		$stockResult = $this->stockRepository->listStock(['*']);
 		//$stockResult = $this->stockRepository->listStock(['itemId','variationId','warehouseId','stockPhysical','reservedStock','stockNet','averagePurchasePrice','updatedAt'], 1, 1);
 		
-		$this->getLogger(__METHOD__)->error('Bc::stockResult', $stockResult);
+		$this->getLogger(__METHOD__)->error('Bc::stockResultSS', $stockResult);
 		$this->getLogger(__METHOD__)->error('Bc::proDD', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryL', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
