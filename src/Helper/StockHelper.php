@@ -131,7 +131,7 @@ class StockHelper
             }
         }
 
-        return $stock;
+        return [$stock,$stockNet];
     }
 
 	/**
