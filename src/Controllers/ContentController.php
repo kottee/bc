@@ -208,6 +208,7 @@ class ContentController extends Controller
 			],
 			'variationBase' => [
 				'id',
+				'parentVariationId',
 				'limitOrderByStockSelect',
 				'weightG',
 				'lengthMm',
