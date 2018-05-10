@@ -62,7 +62,7 @@ class StockHelper
      * @param  array $variation
      * @return int
      */
-    public function getStock($variation):int
+    public function getStock($variation)
     {
         $stockNet = 0;
 
