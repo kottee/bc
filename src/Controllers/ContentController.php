@@ -351,6 +351,7 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
+		$this->getLogger(__METHOD__)->error('Bc::CHECHHELPER', $this->stockHelper->getStock($item->variationBase->id));
 		$this->getLogger(__METHOD__)->error('Bc::proDDNNDDDDDDDDDKKKKKLL', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryTTTNNDDDDDDDDDDKKKKLL', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
