@@ -8,16 +8,12 @@ use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\VariationStock\Contracts\VariationStockRepositoryContract;
 
-use Plenty\Modules\StockManagement\Stock\Contracts\StockRepositoryContract;
-use Plenty\Modules\StockManagement\Stock\Models\Stock;
-
 use Plenty\Plugin\Application;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Modules\Item\DataLayer\Models\RecordList;
 
 //use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
-use Illuminate\Support\Collection;
-use Plenty\Repositories\Models\PaginatedResult;
+
 
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
 
@@ -34,13 +30,11 @@ class ContentController extends Controller
 	public $libCall;
 	public $itemDataLayerRepository;
 	public $stockHelper;
-	public $stockRepository;
 	
-	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository, StockHelper $stockHelper, StockRepositoryContract $stockRepositoryContract){
+	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository, StockHelper $stockHelper){
 		$this->libCall = $libCall;
 		$this->itemDataLayerRepository = $itemDataLayerRepository;
-		$this->stockHelper = $stockHelper;
-		$this->stockRepository = $stockRepositoryContract;
+		$this->stockHelper = $stockHelper;		
 	}
 	
 	/**
@@ -343,7 +337,7 @@ class ContentController extends Controller
 			  'tags'=>'red,shoe,cool',
 			  'description'=>$item->itemDescription->shortDescription,
 			  'price'=>$item->variationRetailPrice->price,
-			  'inventory'=>$item,
+			  'inventory'=>$this->stockHelper->getStock($item->variationBase->id),
 			  'randomfield'=>'12321'
   			);
 		}
@@ -353,27 +347,11 @@ class ContentController extends Controller
 		    'currentItems' => $items
 		);
 		
-		$this->stockRepository->setFilters(['variationId' => $item->variationBase->id]);
-		$stockNet = 0;
-		$stockResult = $this->stockRepository->listStock(['*']);
-		if($stockResult instanceof PaginatedResult)
-        {
-			$result = $stockResult->getResult();
-			if($result instanceof Collection)
-			{
-				foreach($result as $model)
-				{
-					if($model instanceof Stock)
-					{
-						$stockNet += (int)$model->stockNet;
-					}
-				}
-			}
-		}
+		
 		//$stockResult = $this->stockRepository->listStock(['itemId','variationId','warehouseId','stockPhysical','reservedStock','stockNet','averagePurchasePrice','updatedAt'], 1, 1);
 		
-		$this->getLogger(__METHOD__)->error('Bc::stockResultSS', $stockResult);
-		$this->getLogger(__METHOD__)->error('Bc::stockNet', $stockNet);
+		//$this->getLogger(__METHOD__)->error('Bc::stockResultSS', $stockResult);
+		//$this->getLogger(__METHOD__)->error('Bc::stockNet', $stockNet);
 		$this->getLogger(__METHOD__)->error('Bc::proDD', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryL', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
