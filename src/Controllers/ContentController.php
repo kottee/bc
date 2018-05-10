@@ -16,6 +16,8 @@ use Plenty\Modules\Item\DataLayer\Models\RecordList;
 
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
 
+use Bc\Helper\StockHelper;
+
 /**
  * Class ContentController
  * @package HelloWorld\Controllers
@@ -26,10 +28,12 @@ class ContentController extends Controller
 	
 	public $libCall;
 	public $itemDataLayerRepository;
+	public $stockHelper;
 	
-	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository){
+	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository, StockHelper $stockHelper){
 		$this->libCall = $libCall;
 		$this->itemDataLayerRepository = $itemDataLayerRepository;
+		$this->stockHelper = $stockHelper;
 	}
 	
 	/**
