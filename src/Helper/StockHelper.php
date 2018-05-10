@@ -68,7 +68,7 @@ class StockHelper
 
         if($this->stockRepository instanceof StockRepositoryContract)
         {
-            $this->stockRepository->setFilters(['variationId' => $variation['id']]);
+            $this->stockRepository->setFilters(['variationId' => $variation]);
             $stockResult = $this->stockRepository->listStockByWarehouseType(self::STOCK_WAREHOUSE_TYPE, ['*'], 1, 1);
 
             if($stockResult instanceof PaginatedResult)
@@ -94,7 +94,8 @@ class StockHelper
         if($this->marketHelper->getConfigValue('stockCondition') != 'N')
         {
             // if stock limitation is available, but stock is not limited
-            if($variation['data']['variation']['stockLimitation'] == self::STOCK_AVAILABLE_NOT_LIMITED && $stockNet > 0)
+            //if($variation['data']['variation']['stockLimitation'] == self::STOCK_AVAILABLE_NOT_LIMITED && $stockNet > 0)
+	    if($stockNet > 0)
             {
                 if($stockNet > 999)
                 {
@@ -111,7 +112,8 @@ class StockHelper
                 
             }
             // if stock limitation is available and stock is limited
-            elseif($variation['data']['variation']['stockLimitation'] == self::STOCK_AVAILABLE_LIMITED && $stockNet > 0)
+		//elseif($variation['data']['variation']['stockLimitation'] == self::STOCK_AVAILABLE_LIMITED && $stockNet > 0)
+	    elseif($stockNet > 0)
             {
                 if($stockNet > 999)
                 {
