@@ -16,6 +16,8 @@ use Plenty\Plugin\ConfigRepository;
 use Plenty\Modules\Item\DataLayer\Models\RecordList;
 
 //use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
+use Illuminate\Support\Collection;
+use Plenty\Repositories\Models\PaginatedResult;
 
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
 
@@ -352,10 +354,26 @@ class ContentController extends Controller
 		);
 		
 		$this->stockRepository->setFilters(['variationId' => $item->variationBase->id]);
+		$stockNet = 0;
 		$stockResult = $this->stockRepository->listStock(['*']);
+		if($stockResult instanceof PaginatedResult)
+        {
+			$result = $stockResult->getResult();
+			if($result instanceof Collection)
+			{
+				foreach($result as $model)
+				{
+					if($model instanceof Stock)
+					{
+						$stockNet += (int)$model->stockNet;
+					}
+				}
+			}
+		}
 		//$stockResult = $this->stockRepository->listStock(['itemId','variationId','warehouseId','stockPhysical','reservedStock','stockNet','averagePurchasePrice','updatedAt'], 1, 1);
 		
 		$this->getLogger(__METHOD__)->error('Bc::stockResultSS', $stockResult);
+		$this->getLogger(__METHOD__)->error('Bc::stockNet', $stockNet);
 		$this->getLogger(__METHOD__)->error('Bc::proDD', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryL', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
