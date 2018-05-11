@@ -300,9 +300,12 @@ class ContentController extends Controller
 			$imageObj = $this->itemImageRepository->findByVariationId($item->variationBase->id);
 			$imageUrl = '';
 			foreach($imageObj as $image){
+				$this->getLogger(__METHOD__)->error('Bc::IMGCHECK', $image);
 				$imageUrl = $image->url;
-				break;
+				$this->getLogger(__METHOD__)->error('Bc::IMGCHECKURL', $image);				
+				//break;
 			}
+			$this->getLogger(__METHOD__)->error('Bc::ITEM', $item);
 			$item->variationImageList->path = $imageUrl;
 			//$itemstockData = $itemstock->listStockByWarehouse($item->variationBase->id, ['variationId','warehouseId','valueOfGoods','purchasePrice','physicalStock','reservedStock','netStock']);
 		    $items[] = $item;
