@@ -318,10 +318,10 @@ class ContentController extends Controller
 		    'resultCount' => $resultItems->count(),
 		    'currentItems' => $items
 		);
-		
+		//$this->itemImageRepository->findByVariationId($item->variationBase->id);
 		
 		//$stockResult = $this->stockRepository->listStock(['itemId','variationId','warehouseId','stockPhysical','reservedStock','stockNet','averagePurchasePrice','updatedAt'], 1, 1);
-		
+		$this->getLogger(__METHOD__)->error('Bc::Variation', $this->itemImageRepository->findByVariationId($item->variationBase->id));
 		//$this->getLogger(__METHOD__)->error('Bc::stockResultSS', $stockResult);
 		//$this->getLogger(__METHOD__)->error('Bc::stockNet', $stockNet);
 		$this->getLogger(__METHOD__)->error('Bc::proDDDDD', $product);
