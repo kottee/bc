@@ -333,7 +333,7 @@ class ContentController extends Controller
 			  'name'=>$item->itemDescription->name1,
 			  'main_image'=>'https://www.google.com/images/srpr/logo11w.png',
 			  'sku'=>$item->variationBase->id,
-			  'parent_sku'=>$item->variationBase->id,
+			  'parent_sku'=>($item->variationBase->parentVariationId) ? $item->variationBase->parentVariationId : $item->variationBase->id,
 			  'shipping'=>'10',
 			  'tags'=>'red,shoe,cool',
 			  'description'=>$item->itemDescription->shortDescription,
@@ -353,7 +353,7 @@ class ContentController extends Controller
 		
 		//$this->getLogger(__METHOD__)->error('Bc::stockResultSS', $stockResult);
 		//$this->getLogger(__METHOD__)->error('Bc::stockNet', $stockNet);
-		$this->getLogger(__METHOD__)->error('Bc::proDD', $product);
+		$this->getLogger(__METHOD__)->error('Bc::proDDDDD', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryL', $resultItems);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
