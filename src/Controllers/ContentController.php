@@ -246,7 +246,8 @@ class ContentController extends Controller
 			],
 			'variationImageList' => [
 				'path',
-				'cleanImageName'
+				'cleanImageName',
+				'url'
 		       ]
 		];
 		
@@ -321,10 +322,10 @@ class ContentController extends Controller
 		//$this->itemImageRepository->findByVariationId($item->variationBase->id);
 		
 		//$stockResult = $this->stockRepository->listStock(['itemId','variationId','warehouseId','stockPhysical','reservedStock','stockNet','averagePurchasePrice','updatedAt'], 1, 1);
-		$this->getLogger(__METHOD__)->error('Bc::Variation', $this->itemImageRepository->findByVariationId($item->variationBase->id));
+		$this->getLogger(__METHOD__)->error('Bc::VariationTT', $this->itemImageRepository->findByVariationId($item->variationBase->id));
 		//$this->getLogger(__METHOD__)->error('Bc::stockResultSS', $stockResult);
 		//$this->getLogger(__METHOD__)->error('Bc::stockNet', $stockNet);
-		$this->getLogger(__METHOD__)->error('Bc::proDDDDD', $product);
+		$this->getLogger(__METHOD__)->error('Bc::proDDDDDTT', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryL', $resultItems);
 		$this->getLogger(__METHOD__)->error('Bc::TopItems', $templateData);
 		return $twig->render('Bc::content.TopItems', $templateData);
