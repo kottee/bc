@@ -12,6 +12,8 @@ use Plenty\Plugin\Application;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Modules\Item\DataLayer\Models\RecordList;
 
+use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
+
 //use Plenty\Modules\Item\Variation\Contracts\VariationSearchRepositoryContract;
 
 
@@ -30,11 +32,13 @@ class ContentController extends Controller
 	public $libCall;
 	public $itemDataLayerRepository;
 	public $stockHelper;
+	public $itemImageRepository;
 	
-	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository, StockHelper $stockHelper){
+	public function __construct(LibraryCallContract $libCall, ItemDataLayerRepositoryContract $itemDataLayerRepository, StockHelper $stockHelper, ItemImageRepositoryContract $itemImageRepo){
 		$this->libCall = $libCall;
 		$this->itemDataLayerRepository = $itemDataLayerRepository;
 		$this->stockHelper = $stockHelper;		
+		$this->itemImageRepository = $itemImageRepo;		
 	}
 	
 	/**
@@ -355,6 +359,7 @@ class ContentController extends Controller
 		//$this->getLogger(__METHOD__)->error('Bc::stockNet', $stockNet);
 		$this->getLogger(__METHOD__)->error('Bc::proDDDDD', $product);
 		$this->getLogger(__METHOD__)->error('Bc::itemRepositoryL', $resultItems);
+		$this->getLogger(__METHOD__)->error('Bc::TopItems', $templateData);
 		return $twig->render('Bc::content.TopItems', $templateData);
     	}
 }
