@@ -246,8 +246,7 @@ class ContentController extends Controller
 			],
 			'variationImageList' => [
 				'path',
-				'cleanImageName',
-				'url'
+				'cleanImageName'
 		       ]
 		];
 		
@@ -298,12 +297,18 @@ class ContentController extends Controller
 			//} else {
 			//	$items_create[] = $item;
 			//}
-			
+			$imageObj = $this->itemImageRepository->findByVariationId($item->variationBase->id);
+			$imageUrl = '';
+			foreach($imageObj as $image){
+				$imageUrl = $image->url;
+				break;
+			}
+			$item->variationImageList->path = $imageUrl;
 			//$itemstockData = $itemstock->listStockByWarehouse($item->variationBase->id, ['variationId','warehouseId','valueOfGoods','purchasePrice','physicalStock','reservedStock','netStock']);
 		    $items[] = $item;
 			$product[] = array(
 			  'name'=>$item->itemDescription->name1,
-			  'main_image'=>'https://www.google.com/images/srpr/logo11w.png',
+			  'main_image'=>$imageUrl,
 			  'sku'=>$item->variationBase->id,
 			  'parent_sku'=>($item->variationBase->parentVariationId) ? $item->variationBase->parentVariationId : $item->variationBase->id,
 			  'shipping'=>'10',
