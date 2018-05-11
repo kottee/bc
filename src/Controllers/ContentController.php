@@ -121,9 +121,41 @@ class ContentController extends Controller
 				'attributeValueId'
 			],
 			'variationImageList' => [
+				'params' => [
+					'all_images'                                       => [
+						'type'                 => 'all', // all images
+						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
+						'imageType'            => ['internal'],
+						'referenceMarketplace' => 10,
+					],
+					'only_current_variation_images_and_generic_images' => [
+						'type'                 => 'item_variation', // current variation + item images
+						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
+						'imageType'            => ['internal'],
+						'referenceMarketplace' => 10,
+					],
+					'only_current_variation_images'                    => [
+						'type'                 => 'variation', // current variation images
+						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
+						'imageType'            => ['internal'],
+						'referenceMarketplace' => 10,
+					],
+					'only_generic_images'                              => [
+						'type'                 => 'item', // only item images
+						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
+						'imageType'            => ['internal'],
+						'referenceMarketplace' => 10,
+					],
+				],
+				'fields' => [
+					'imageId',
+					'type',
+					'fileType',
 					'path',
-					'cleanImageName'
-		       ]
+					'position',
+					'attributeValueId',
+				],
+			]
 		];
 		
 		
@@ -213,41 +245,9 @@ class ContentController extends Controller
 				'additionalInformation'
 			],
 			'variationImageList' => [
-				'params' => [
-					'all_images'                                       => [
-						'type'                 => 'all', // all images
-						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
-						'imageType'            => ['internal'],
-						'referenceMarketplace' => 10,
-					],
-					'only_current_variation_images_and_generic_images' => [
-						'type'                 => 'item_variation', // current variation + item images
-						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
-						'imageType'            => ['internal'],
-						'referenceMarketplace' => 10,
-					],
-					'only_current_variation_images'                    => [
-						'type'                 => 'variation', // current variation images
-						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
-						'imageType'            => ['internal'],
-						'referenceMarketplace' => 10,
-					],
-					'only_generic_images'                              => [
-						'type'                 => 'item', // only item images
-						'fileType'             => ['gif', 'jpeg', 'jpg', 'png'],
-						'imageType'            => ['internal'],
-						'referenceMarketplace' => 10,
-					],
-				],
-				'fields' => [
-					'imageId',
-					'type',
-					'fileType',
-					'path',
-					'position',
-					'attributeValueId',
-				],
-			]
+				'path',
+				'cleanImageName'
+		       ]
 		];
 		
 		//$itemFilter['itemBase.wasUpdatedBetween'] = [
