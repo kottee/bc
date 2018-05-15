@@ -8,15 +8,15 @@
                 {% for item in currentItems %}
                     <li class="card" style="width: 280px">
                         <div class="card-block">
-                            <h4 class="card-title">{{ item{name} }}</h4>
-                            <h6 class="card-subtitle text-muted">ID: {{ item{sku} }}</h6>
+                            <h4 class="card-title">{{ item.name }}</h4>
+                            <h6 class="card-subtitle text-muted">ID: {{ item.sku }}</h6>
                         </div>
-                        <img class="col-lg-12" src="{{ item{main_image} }}" alt="{{ item{description} }}">
+                        <img class="col-lg-12" src="{{ item.main_image }}" alt="{{ item.description }}">
                         <div class="card-block">
-                            <p class="card-text">{{ item{description} }}</p>
+                            <p class="card-text">{{ item.description }}</p>
                         </div>
                         <div class="card-footer bg-primary">
-                            <h4 style="text-align: center">Price: {{ item{price} }} €</h4>
+                            <h4 style="text-align: center">Price: {{ item.price }} €</h4>
                         </div>
                     </li>
                 {% endfor %}
