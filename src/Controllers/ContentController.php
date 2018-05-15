@@ -300,6 +300,7 @@ class ContentController extends Controller
 			$imageObj = $this->itemImageRepository->findByVariationId($item->variationBase->id);
 			$imageUrl = '';
 			foreach($imageObj as $image){
+				$image = (object) $image;
 				$this->getLogger(__METHOD__)->error('Bc::IMGCHECK1', $image);
 				$imageUrl = $image->url;
 				$this->getLogger(__METHOD__)->error('Bc::IMGCHECKURL1', $imageUrl);				
