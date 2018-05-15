@@ -8,16 +8,15 @@
                 {% for item in currentItems %}
                     <li class="card" style="width: 280px">
                         <div class="card-block">
-                            <h4 class="card-title">{{ item.itemDescription.name1 }}</h4>
-                            <h6 class="card-subtitle text-muted">ID: {{ item.variationBase.id }}</h6>
+                            <h4 class="card-title">{{ item{name} }}</h4>
+                            <h6 class="card-subtitle text-muted">ID: {{ item{sku} }}</h6>
                         </div>
-                        {% set image = item.variationImageList | first %}
-                        <img class="col-lg-12" src="{{ image.path }}" alt="{{ image.cleanImageName }}">
+                        <img class="col-lg-12" src="{{ item{main_image} }}" alt="{{ item{description} }}">
                         <div class="card-block">
-                            <p class="card-text">{{ item.itemDescription.description }}</p>
+                            <p class="card-text">{{ item{description} }}</p>
                         </div>
                         <div class="card-footer bg-primary">
-                            <h4 style="text-align: center">Price: {{ item.variationRetailPrice.price }} €</h4>
+                            <h4 style="text-align: center">Price: {{ item{price} }} €</h4>
                         </div>
                     </li>
                 {% endfor %}
