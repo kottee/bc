@@ -322,7 +322,7 @@ class ContentController extends Controller
 		
 		$templateData = array(
 		    'resultCount' => $resultItems->count(),
-		    'currentItems' => $items
+		    'currentItems' => $product
 		);
 		//$this->itemImageRepository->findByVariationId($item->variationBase->id);
 		
