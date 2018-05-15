@@ -243,11 +243,7 @@ class ContentController extends Controller
 				'parentSku',
 				'marketStatus',
 				'additionalInformation'
-			],
-			'variationImageList' => [
-				'path',
-				'cleanImageName'
-		       ]
+			]
 		];
 		
 		//$itemFilter['itemBase.wasUpdatedBetween'] = [
@@ -308,7 +304,7 @@ class ContentController extends Controller
 			}
 			$this->getLogger(__METHOD__)->error('Bc::ITEM', $item);
 			//$itemstockData = $itemstock->listStockByWarehouse($item->variationBase->id, ['variationId','warehouseId','valueOfGoods','purchasePrice','physicalStock','reservedStock','netStock']);
-			$item->variationImageList->path = $imageUrl;
+			$item->img->path = $imageUrl;
 		    $items[] = $item;
 			$product[] = array(
 			  'name'=>$item->itemDescription->name1,
